@@ -8,8 +8,7 @@ const {
   sacarConta,
   transferenciaConta,
   consultarSaldoConta,
-  consultarExtratoConta,
-  realizarDeposito
+  consultarExtratoConta
 } = require("./controladores/contaBancaria");
 
 const {
