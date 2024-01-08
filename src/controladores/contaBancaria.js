@@ -121,7 +121,6 @@ const realizarDepositoConta = (req, res) => {
   }
 
   bancodedados.depositos.push(registroDoDeposito);
-  console.log(registroDoDeposito);
 
   return res.status(204).json();
 }
@@ -165,7 +164,6 @@ const sacarConta = (req, res) => {
   }
 
   bancodedados.saques.push(registroDoSaque);
-  console.log(registroDoSaque);
 
   return res.status(204).json();
 }
@@ -221,7 +219,6 @@ const transferenciaConta = (req, res) => {
   }
 
   bancodedados.transferencias.push(registroDaTransferencia);
-  console.log(registroDaTransferencia);
 
   return res.status(204).json();
 }
