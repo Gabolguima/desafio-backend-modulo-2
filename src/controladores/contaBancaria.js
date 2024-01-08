@@ -104,8 +104,12 @@ const realizarDepositoConta = (req, res) => {
 
   const valorDoDeposito = Number(valor);
 
-  if (!numero_conta || valorDoDeposito <= 0) {
-    return res.status(400).json({ mensagem: "O número da conta e o valor são obrigatórios!" });
+  if (!numero_conta) {
+    return res.status(400).json({ mensagem: "O número da conta é obrigatório!" });
+  }
+
+  if (valorDoDeposito <= 0) {
+    return res.status(400).json({ mensagem: "Você não pode realizar um depósito negativo ou sem nenhum valor." });
   }
 
   if (indiceDaConta === -1) {
@@ -140,8 +144,11 @@ const sacarConta = (req, res) => {
 
   const conta = bancodedados.contas[indiceDaConta];
 
-  if (!numero_conta || valorDoSaque <= 0 || !senha) {
+  if (!numero_conta || !valorDoSaque || !senha) {
     return res.status(400).json({ mensagem: "O número da conta, o valor do saque e a senha são obrigatórios!" });
+  }
+  if (valorDoSaque <= 0) {
+    return res.status(400).json({ mensagem: "O valor a ser sacado não pode ser negativo." });
   }
 
   if (indiceDaConta === -1) {
@@ -179,6 +186,7 @@ const transferenciaConta = (req, res) => {
   const indiceDaContaDeOrigem = bancodedados.contas.findIndex((conta) => {
     return conta.numero === numero_conta_origem;
   });
+
   const indiceDaContaDeDestino = bancodedados.contas.findIndex((conta) => {
     return conta.numero === numero_conta_destino;
   });
